@@ -1,2 +1,2 @@
-# Worlde
+# Wordle
 Wordle Clone
