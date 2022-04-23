@@ -13,23 +13,22 @@ const Home: NextPage = () => {
   const keyPressHandler = useCallback((event) => {
 
     if (event.key >= "a" && event.key <= "z") {
-      grid[keyCount] = event.key;
-      setKeyCount(keyCount + 1);
-      setWordCount(Math.floor(keyCount / wordSize));
-
-      // TO DO: restrict typing into next guess
+      // restrict typing into next guess
+      if (keyCount < wordSize * (wordCount + 1)) {
+        grid[keyCount] = event.key;
+        setKeyCount(keyCount + 1);
+        setWordCount(Math.floor(keyCount / wordSize));
+      }
     }
 
     else if (event.key === "Backspace") {
-
-      if (keyCount - 1 < wordCount * 5)
-
-      grid[keyCount - 1] = "";
-      grid[keyCount] = "";
-      setKeyCount(Math.max(0, keyCount - 1));
-      setWordCount(Math.floor(keyCount / wordSize));
-
-      // TO DO: restrict backspacing beyond last guess
+      // restrict backspacing beyond last guess
+      if (keyCount != wordSize * wordCount) {
+        grid[keyCount - 1] = "";
+        grid[keyCount] = "";
+        setKeyCount(Math.max(0, keyCount - 1));
+        setWordCount(Math.floor(keyCount / wordSize));
+      }
     }
 
     else if (event.key === "Enter") {
