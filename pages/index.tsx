@@ -1,14 +1,48 @@
 import type { NextPage } from "next";
 import Head from "next/head";
 import Image from "next/image";
-import { useCallback, useEffect, useRef } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 
 let grid: Array<string> = [...Array(30)];
 
 const Home: NextPage = () => {
-  const keyPressHandler = useCallback((event: Event) => {
-    console.log(event);
-  }, []);
+
+  const wordSize: number = 5;
+  const [keyCount, setKeyCount] = useState(0);
+  const [wordCount, setWordCount] = useState(0);
+  const keyPressHandler = useCallback((event) => {
+
+    if (event.key >= "a" && event.key <= "z") {
+      grid[keyCount] = event.key;
+      setKeyCount(keyCount + 1);
+      setWordCount(Math.floor(keyCount / wordSize));
+
+      // TO DO: restrict typing into next guess
+    }
+
+    else if (event.key === "Backspace") {
+
+      if (keyCount - 1 < wordCount * 5)
+
+      grid[keyCount - 1] = "";
+      grid[keyCount] = "";
+      setKeyCount(Math.max(0, keyCount - 1));
+      setWordCount(Math.floor(keyCount / wordSize));
+
+      // TO DO: restrict backspacing beyond last guess
+    }
+
+    else if (event.key === "Enter") {
+      let attempt: string = "";
+      if (keyCount % wordSize === 0) {
+        for (let i = 0; i < 5; i++) {
+          attempt += `${grid[wordCount * wordSize + i]}`;
+        }
+        console.log(`guess: ${attempt}`);
+      }
+    }
+
+  }, [keyCount]);
 
   if (typeof window !== "undefined") {
     useEventListener("keydown", keyPressHandler, window);
