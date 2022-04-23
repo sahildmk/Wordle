@@ -13,28 +13,28 @@ const Home: NextPage = () => {
   const keyPressHandler = useCallback((event) => {
 
     if (event.key >= "a" && event.key <= "z") {
-      // restrict typing into next guess
-      if (keyCount < wordSize * (wordCount + 1)) {
+      // TO DO: restrict typing into next guess
+      if (keyCount < wordSize * (Math.floor(keyCount / 5) + 1)) {
         grid[keyCount] = event.key;
         setKeyCount(keyCount + 1);
-        setWordCount(Math.floor(keyCount / wordSize));
+        setWordCount(Math.floor(keyCount / 5));
       }
     }
 
     else if (event.key === "Backspace") {
-      // restrict backspacing beyond last guess
-      if (keyCount != wordSize * wordCount) {
+      // TO DO: restrict backspacing beyond last guess
+      if (keyCount != wordSize * (Math.floor(keyCount / 5) + 1)) {
         grid[keyCount - 1] = "";
-        grid[keyCount] = "";
         setKeyCount(Math.max(0, keyCount - 1));
-        setWordCount(Math.floor(keyCount / wordSize));
+        setWordCount(Math.floor(keyCount / 5));
       }
     }
 
     else if (event.key === "Enter") {
       let attempt: string = "";
-      if (keyCount % wordSize === 0) {
-        for (let i = 0; i < 5; i++) {
+      // TO DO: stop accessing backspaced spaces
+      if (keyCount > 0 && keyCount % wordSize === 0) {
+        for (let i = 0; i < wordSize; i++) {
           attempt += `${grid[wordCount * wordSize + i]}`;
         }
         console.log(`guess: ${attempt}`);
