@@ -2,46 +2,44 @@ import type { NextPage } from "next";
 import Head from "next/head";
 import Image from "next/image";
 import { useCallback, useEffect, useRef, useState } from "react";
+import { singleLetterRegex, useEventListener } from "../utils/utils";
 
 let grid: Array<string> = [...Array(30)];
 
 const Home: NextPage = () => {
-
   const wordSize: number = 5;
   const [keyCount, setKeyCount] = useState(0);
   const [wordCount, setWordCount] = useState(0);
-  const keyPressHandler = useCallback((event) => {
 
-    if (event.key >= "a" && event.key <= "z") {
-      // TO DO: restrict typing into next guess
-      if (keyCount < wordSize * (Math.floor(keyCount / 5) + 1)) {
-        grid[keyCount] = event.key;
-        setKeyCount(keyCount + 1);
-        setWordCount(Math.floor(keyCount / 5));
-      }
-    }
-
-    else if (event.key === "Backspace") {
-      // TO DO: restrict backspacing beyond last guess
-      if (keyCount != wordSize * (Math.floor(keyCount / 5) + 1)) {
-        grid[keyCount - 1] = "";
-        setKeyCount(Math.max(0, keyCount - 1));
-        setWordCount(Math.floor(keyCount / 5));
-      }
-    }
-
-    else if (event.key === "Enter") {
-      let attempt: string = "";
-      // TO DO: stop accessing backspaced spaces
-      if (keyCount > 0 && keyCount % wordSize === 0) {
-        for (let i = 0; i < wordSize; i++) {
-          attempt += `${grid[wordCount * wordSize + i]}`;
+  const keyPressHandler = useCallback(
+    (event: KeyboardEvent) => {
+      if (event.key.match(singleLetterRegex)) {
+        // TO DO: restrict typing into next guess
+        if (keyCount < wordSize * (Math.floor(keyCount / 5) + 1)) {
+          grid[keyCount] = event.key;
+          setKeyCount(keyCount + 1);
+          setWordCount(Math.floor(keyCount / 5));
         }
-        console.log(`guess: ${attempt}`);
+      } else if (event.key === "Backspace") {
+        // TO DO: restrict backspacing beyond last guess
+        if (keyCount != wordSize * (Math.floor(keyCount / 5) + 1)) {
+          grid[keyCount - 1] = "";
+          setKeyCount(Math.max(0, keyCount - 1));
+          setWordCount(Math.floor(keyCount / 5));
+        }
+      } else if (event.key === "Enter") {
+        let attempt: string = "";
+        // TO DO: stop accessing backspaced spaces
+        if (keyCount > 0 && keyCount % wordSize === 0) {
+          for (let i = 0; i < wordSize; i++) {
+            attempt += `${grid[wordCount * wordSize + i]}`;
+          }
+          console.log(`guess: ${attempt}`);
+        }
       }
-    }
-
-  }, [keyCount]);
+    },
+    [keyCount]
+  );
 
   if (typeof window !== "undefined") {
     useEventListener("keydown", keyPressHandler, window);
@@ -69,30 +67,6 @@ const Home: NextPage = () => {
       <footer>footer</footer>
     </div>
   );
-};
-
-const useEventListener = (
-  eventName: string,
-  handler: Function,
-  element: Window
-) => {
-  const savedHandler = useRef<Function>();
-
-  useEffect(() => {
-    savedHandler.current = handler;
-  }, [handler]);
-
-  useEffect(() => {
-    const isSupported = element && element.addEventListener;
-    if (!isSupported) return;
-
-    const eventListener = (event: Event) => savedHandler.current!(event);
-    element.addEventListener(eventName, eventListener);
-
-    return () => {
-      element.removeEventListener(eventName, eventListener);
-    };
-  }, [eventName, element]);
 };
 
 export default Home;
