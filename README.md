@@ -1,5 +1,5 @@
 # Wordle
 
-Wordle Clone
+Wordle Clone: WIP
 
 Co-Authored: @sahildmk @mehakarya
