@@ -1,6 +1,12 @@
 import { useRef, useEffect } from "react";
 
-export const singleLetterRegex = "\\b[a-zA-Z]\\b";
+export const SingleLetterRegex = "\\b[a-zA-Z]\\b";
+
+export const enum LetterResultEnum {
+  CorrectPos,
+  IncorrectPos,
+  IncorrectLetter,
+}
 
 export const useEventListener = (
   eventName: string,
