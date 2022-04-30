@@ -13,7 +13,9 @@ const maxWords: number = 6;
 const Home: NextPage = () => {
   const [keyCount, setKeyCount] = useState(0);
   const [wordCount, setWordCount] = useState(0);
-  const [grid, setGrid] = useState<Array<string>>([...Array(30)]); // change to array of tuples (letter, state)
+  const [grid, setGrid] = useState<Array<[String, LetterResultEnum]>>(
+    Array.from({ length: 30 }, () => ["", LetterResultEnum.Default])
+  );
 
   const handleLetterInput = (key: string) => {
     if (keyCount >= wordSize || wordCount >= maxWords) {
@@ -29,7 +31,7 @@ const Home: NextPage = () => {
     }
 
     setGrid((prev) => {
-      prev[gridIndex] = key.toLowerCase();
+      prev[gridIndex][0] = key.toLowerCase();
       return prev;
     });
     setKeyCount((prev) => prev + 1);
@@ -42,7 +44,7 @@ const Home: NextPage = () => {
 
     try {
       const gridIndex = getGridIndex(keyCount, wordCount);
-      grid[gridIndex] = "";
+      grid[gridIndex][0] = "";
       setKeyCount((prev) => prev - 1);
     } catch (e) {
       console.error(e);
@@ -69,15 +71,19 @@ const Home: NextPage = () => {
     const mock = {
       id: 123,
       letters: [
-        LetterResultEnum.CorrectPos,
-        LetterResultEnum.CorrectPos,
-        LetterResultEnum.CorrectPos,
-        LetterResultEnum.CorrectPos,
-        LetterResultEnum.CorrectPos,
+        LetterResultEnum.Correct,
+        LetterResultEnum.Correct,
+        LetterResultEnum.Correct,
+        LetterResultEnum.Correct,
+        LetterResultEnum.Correct,
       ],
     };
 
-    console.log(`guess: ${grid.slice(startIndex, endIndex).join("")}`);
+    console.log(
+      `guess: ${Array.from(grid.slice(startIndex, endIndex), (e) => e[0]).join(
+        ""
+      )}`
+    );
     setWordCount((prev) => prev + 1);
     setKeyCount(0);
   };
@@ -111,15 +117,16 @@ const Home: NextPage = () => {
       <nav>hi</nav>
       <main className="">
         <div className="grid grid-cols-5 grid-rows-6 gap-3">
-          {grid.map((value, index) => (
-            <div
-              id={index.toString()}
-              key={index}
-              className="grid place-items-center rounded-md border-2 border-solid border-slate-600 bg-gray-800 text-4xl font-bold uppercase sm:h-24 sm:w-24"
-            >
-              {value}
-            </div>
-          ))}
+          {grid[0] !== undefined &&
+            grid.map((value, index) => (
+              <div
+                id={index.toString()}
+                key={index}
+                className={`${value[1].toString()}`}
+              >
+                {value[0]}
+              </div>
+            ))}
         </div>
       </main>
       <footer>footer</footer>

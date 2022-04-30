@@ -3,9 +3,10 @@ import { useRef, useEffect } from "react";
 export const SingleLetterRegex = "\\b[a-zA-Z]\\b";
 
 export const enum LetterResultEnum {
-  CorrectPos,
-  IncorrectPos,
-  IncorrectLetter,
+  Default = "defaultTile",
+  Correct = "correct",
+  IncorrectPos = "incorrectPos",
+  IncorrectLetter = "incorrectLetter",
 }
 
 export const useEventListener = (
