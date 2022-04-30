@@ -17,7 +17,7 @@ const computeMetaData = () => {
     if (todaysWordMetaData.has(todaysWord[i])) {
       todaysWordMetaData.set(
         todaysWord[i],
-        todaysWordMetaData.get(todaysWord[i]) + 1
+        todaysWordMetaData.get(todaysWord[i])! + 1
       );
     }
   }
@@ -45,7 +45,7 @@ export default function handler(
       responseList[i] = LetterResultEnum.Correct;
       todaysWordMetaData.set(
         currLetter,
-        todaysWordMetaData.get(currLetter) - 1
+        todaysWordMetaData.get(currLetter)! - 1
       );
     }
   }
@@ -55,12 +55,12 @@ export default function handler(
 
     if (
       todaysWord.includes(currLetter) &&
-      todaysWordMetaData.get(currLetter) > 0
+      todaysWordMetaData.get(currLetter)! > 0
     ) {
       responseList[i] = LetterResultEnum.IncorrectPos;
       todaysWordMetaData.set(
         currLetter,
-        todaysWordMetaData.get(currLetter) - 1
+        todaysWordMetaData.get(currLetter)! - 1
       );
     }
   }
