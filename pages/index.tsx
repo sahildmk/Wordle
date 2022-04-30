@@ -3,12 +3,11 @@ import Head from "next/head";
 import { useCallback, useState } from "react";
 import {
   LetterResultEnum,
+  maxWords,
   SingleLetterRegex,
   useEventListener,
+  wordSize,
 } from "../utils/utils";
-
-const wordSize: number = 5;
-const maxWords: number = 6;
 
 const Home: NextPage = () => {
   const [keyCount, setKeyCount] = useState(0);
@@ -16,6 +15,16 @@ const Home: NextPage = () => {
   const [grid, setGrid] = useState<Array<[String, LetterResultEnum]>>(
     Array.from({ length: 30 }, () => ["", LetterResultEnum.Default])
   );
+
+  const updateGrid = (index: number, wordState: Array<LetterResultEnum>) => {
+    setGrid((prev) => {
+      let temp = [...prev];
+      for (let i = index; i < index + wordSize; i++) {
+        temp[i] = [temp[i][0], wordState[i % 5]];
+      }
+      return temp;
+    });
+  };
 
   const handleLetterInput = (key: string) => {
     if (keyCount >= wordSize || wordCount >= maxWords) {
@@ -51,7 +60,7 @@ const Home: NextPage = () => {
     }
   };
 
-  const handleEnterInput = () => {
+  const handleEnterInput = async () => {
     if (keyCount !== wordSize) {
       return;
     }
@@ -67,23 +76,20 @@ const Home: NextPage = () => {
       return;
     }
 
-    // Make call to backend with guess
-    const mock = {
-      id: 123,
-      letters: [
-        LetterResultEnum.Correct,
-        LetterResultEnum.Correct,
-        LetterResultEnum.Correct,
-        LetterResultEnum.Correct,
-        LetterResultEnum.Correct,
-      ],
-    };
+    const guess = Array.from(
+      grid.slice(startIndex, endIndex),
+      (e) => e[0]
+    ).join("");
 
-    console.log(
-      `guess: ${Array.from(grid.slice(startIndex, endIndex), (e) => e[0]).join(
-        ""
-      )}`
+    fetch(`/api/getWordState?word=${guess}`).then((res) =>
+      res.json().then((data) => {
+        updateGrid(
+          startIndex,
+          Array.from(data.wordState, (s: String) => s as LetterResultEnum)
+        );
+      })
     );
+
     setWordCount((prev) => prev + 1);
     setKeyCount(0);
   };
@@ -97,10 +103,6 @@ const Home: NextPage = () => {
       } else if (event.key === "Enter") {
         handleEnterInput();
       }
-      // console.log(
-      //   `KeyCount: ${keyCount} | WordCount: ${wordCount} | Key: ${event.key}`
-      // );
-      // console.log(grid);
     },
     [keyCount]
   );
@@ -114,7 +116,7 @@ const Home: NextPage = () => {
       <Head>
         <title>Wordle Clone</title>
       </Head>
-      <nav>hi</nav>
+      <nav className="h-20"></nav>
       <main className="">
         <div className="grid grid-cols-5 grid-rows-6 gap-3">
           {grid[0] !== undefined &&
@@ -129,7 +131,7 @@ const Home: NextPage = () => {
             ))}
         </div>
       </main>
-      <footer>footer</footer>
+      {/* <footer>footer</footer> */}
     </div>
   );
 };

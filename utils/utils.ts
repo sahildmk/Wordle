@@ -1,6 +1,8 @@
 import { useRef, useEffect } from "react";
 
 export const SingleLetterRegex = "\\b[a-zA-Z]\\b";
+export const wordSize: number = 5;
+export const maxWords: number = 6;
 
 export const enum LetterResultEnum {
   Default = "defaultTile",
@@ -31,4 +33,14 @@ export const useEventListener = (
       element.removeEventListener(eventName, eventListener);
     };
   }, [eventName, element]);
+};
+
+const fetcher = async (url: RequestInfo) => {
+  const res = await fetch(url);
+  const data = await res.json();
+
+  if (res.status !== 200) {
+    throw new Error(data.message);
+  }
+  return data;
 };
