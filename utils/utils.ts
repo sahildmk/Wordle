@@ -11,6 +11,13 @@ export const enum LetterResultEnum {
   IncorrectLetter = "incorrectLetter",
 }
 
+export const getGridIndex = (keyCount: number, wordCount: number): number => {
+  if (keyCount > wordSize || wordCount >= maxWords) {
+    throw "Input is invalid";
+  }
+  return wordCount * wordSize + keyCount - 1;
+};
+
 export const useEventListener = (
   eventName: string,
   handler: Function,

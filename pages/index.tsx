@@ -2,6 +2,7 @@ import type { NextPage } from "next";
 import Head from "next/head";
 import { useCallback, useState } from "react";
 import {
+  getGridIndex,
   LetterResultEnum,
   maxWords,
   SingleLetterRegex,
@@ -124,7 +125,9 @@ const Home: NextPage = () => {
               <div
                 id={index.toString()}
                 key={index}
-                className={`${value[1].toString()}`}
+                className={`${value[1].toString()} transition-all tile-transition-${
+                  index % wordSize
+                } duration-500`}
               >
                 {value[0]}
               </div>
@@ -134,13 +137,6 @@ const Home: NextPage = () => {
       {/* <footer>footer</footer> */}
     </div>
   );
-};
-
-const getGridIndex = (keyCount: number, wordCount: number): number => {
-  if (keyCount > wordSize || wordCount >= maxWords) {
-    throw "Input is invalid";
-  }
-  return wordCount * wordSize + keyCount - 1;
 };
 
 export default Home;
