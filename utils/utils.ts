@@ -9,6 +9,7 @@ export const enum LetterResultEnum {
   Correct = "correct",
   IncorrectPos = "incorrectPos",
   IncorrectLetter = "incorrectLetter",
+  Win = "win",
 }
 
 export const getGridIndex = (keyCount: number, wordCount: number): number => {

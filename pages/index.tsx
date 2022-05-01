@@ -1,6 +1,6 @@
 import type { NextPage } from "next";
 import Head from "next/head";
-import { useCallback, useState } from "react";
+import { useCallback, useRef, useState } from "react";
 import {
   getGridIndex,
   LetterResultEnum,
@@ -13,6 +13,7 @@ import {
 const Home: NextPage = () => {
   const [keyCount, setKeyCount] = useState(0);
   const [wordCount, setWordCount] = useState(0);
+  const winCondition = useRef(false);
   const [grid, setGrid] = useState<Array<[String, LetterResultEnum]>>(
     Array.from({ length: 30 }, () => ["", LetterResultEnum.Default])
   );
@@ -25,6 +26,8 @@ const Home: NextPage = () => {
       }
       return temp;
     });
+
+    if (wordState.at(0) === LetterResultEnum.Win) winCondition.current = true;
   };
 
   const handleLetterInput = (key: string) => {
@@ -97,6 +100,8 @@ const Home: NextPage = () => {
 
   const keyPressHandler = useCallback(
     (event: KeyboardEvent) => {
+      if (winCondition.current) return;
+
       if (event.key.match(SingleLetterRegex)) {
         handleLetterInput(event.key);
       } else if (event.key === "Backspace") {

@@ -1,48 +1,87 @@
+:root {
+  --start-delay: 100ms;
+  --duration: 500ms;
+  --total-duration: calc(var(--start-delay) + var(--duration) * 5);
+}
+
 .defaultTile {
   @apply grid place-items-center rounded-md border-2 border-solid border-slate-600;
-  @apply sm:text-4xl font-bold uppercase sm:h-20 sm:w-20 h-12 w-12 text-3xl;
+  @apply h-12 w-12 text-3xl font-bold uppercase sm:h-20 sm:w-20 sm:text-4xl;
 }
 
 .tile-transition-0 {
-  transition-delay: 200ms;
-  animation-delay: 200ms;
+  --delay: calc(var(--start-delay));
+  transition-delay: var(--delay);
+  animation-delay: var(--delay), var(--total-duration) !important;
 }
 
 .tile-transition-1 {
-  transition-delay: 600ms;
-  animation-delay: 600ms;
+  --delay: calc(var(--start-delay) + var(--duration));
+  transition-delay: var(--delay);
+  animation-delay: var(--delay), var(--total-duration) !important;
 }
 
 .tile-transition-2 {
-  transition-delay: 1000ms;
-  animation-delay: 1000ms;
+  --delay: calc(var(--start-delay) + var(--duration) * 2);
+  transition-delay: var(--delay);
+  animation-delay: var(--delay), var(--total-duration) !important;
 }
 
 .tile-transition-3 {
-  transition-delay: 1400ms;
-  animation-delay: 1400ms;
+  --delay: calc(var(--start-delay) + var(--duration) * 3);
+  transition-delay: var(--delay);
+  animation-delay: var(--delay), var(--total-duration) !important;
 }
 
 .tile-transition-4 {
-  transition-delay: 1800ms;
-  animation-delay: 1800ms;
+  --delay: calc(var(--start-delay) + var(--duration) * 4);
+  transition-delay: var(--delay);
+  animation-delay: var(--delay), var(--total-duration) !important;
 }
 
-.bounce {
-  @apply animate-bounce;
+.win-animation {
+  animation: spin var(--duration) linear, bounce 600ms infinite;
+}
+
+.win {
+  @apply defaultTile win-animation;
+  @apply border-emerald-700 bg-emerald-600;
 }
 
 .correct {
-  @apply defaultTile animate-tiles;
-  @apply bg-emerald-600 border-emerald-700;
+  @apply defaultTile animate-spin;
+  @apply border-emerald-700 bg-emerald-600;
 }
 
 .incorrectPos {
-  @apply defaultTile animate-tiles;
-  @apply bg-yellow-600 border-yellow-700;
+  @apply defaultTile animate-spin;
+  @apply border-yellow-700 bg-yellow-600;
 }
 
 .incorrectLetter {
-  @apply defaultTile animate-tiles;
-  @apply bg-gray-600 border-gray-700;
+  @apply defaultTile animate-spin;
+  @apply border-gray-700 bg-gray-600;
+}
+
+@keyframes spin {
+  0% {
+    transform: rotateX(0);
+  }
+  50% {
+    transform: rotateX(-90deg);
+  }
+}
+.animate-spin {
+  animation: spin var(--duration) linear;
+}
+
+@keyframes bounce {
+  0% {
+    transform: none;
+    animation-timing-function: cubic-bezier(0, 0, 0.2, 1);
+  }
+  50% {
+    transform: translateY(-5%);
+    animation-timing-function: cubic-bezier(0.8, 0, 1, 1);
+  }
 }

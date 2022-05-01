@@ -37,6 +37,14 @@ export default function handler(
     { length: 5 },
     () => LetterResultEnum.IncorrectLetter
   );
+
+  if (word === todaysWord.join("")) {
+    responseList = Array.from({ length: 5 }, () => LetterResultEnum.Win);
+
+    res.status(200).json({ wordState: responseList });
+    return;
+  }
+
   for (let i = 0; i < wordSize; i++) {
     let correctLetter = todaysWord[i];
     let currLetter = word[i];
