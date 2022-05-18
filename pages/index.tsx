@@ -9,6 +9,7 @@ import {
   useEventListener,
   wordSize,
 } from "../utils/utils";
+import HowToPlayModal from "./components/HowToPlayModal";
 
 const Home: NextPage = () => {
   const [keyCount, setKeyCount] = useState(0);
@@ -117,7 +118,9 @@ const Home: NextPage = () => {
       <Head>
         <title>Wordle Clone</title>
       </Head>
-      <nav className="h-20"></nav>
+      <nav className="h-20">
+        <HowToPlayModal />
+      </nav>
       <main className="">
         <div className="grid grid-cols-5 grid-rows-6 gap-3">
           {grid[0] !== undefined &&
