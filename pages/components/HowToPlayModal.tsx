@@ -28,28 +28,28 @@ export default function HowToPlayModal() {
                     You have to guess the WORDLE in six attempts.<br/>
                     Each guess is a five-letter word. To submit your guess, hit ENTER.<br/>
                     The colour of the tiles will change to show you how close your guess is.
-                    <div className="flex m-auto py-2 w-52 h-14">
-                      <div className="flex-1 pt-2 text-white text-sm font-bold uppercase place-items-center rounded-md border-2 border-solid border-gray-700 bg-gray-600">A</div>
-                      <div className="flex-1 pt-2 text-white text-sm font-bold uppercase place-items-center rounded-md border-2 border-solid border-emerald-700 bg-emerald-600">U</div>
-                      <div className="flex-1 pt-2 text-white text-sm font-bold uppercase place-items-center rounded-md border-2 border-solid border-gray-700 bg-gray-600">D</div>
-                      <div className="flex-1 pt-2 text-white text-sm font-bold uppercase place-items-center rounded-md border-2 border-solid border-gray-700 bg-gray-600">I</div>
-                      <div className="flex-1 pt-2 text-white text-sm font-bold uppercase place-items-center rounded-md border-2 border-solid border-gray-700 bg-gray-600">O</div>
+                    <div className="flex m-auto py-2 w-56 h-14">
+                      <div className="flex-1 mr-0.5 pt-2 text-white text-sm font-bold uppercase place-items-center rounded-md border-2 border-solid border-gray-700 bg-gray-600">A</div>
+                      <div className="flex-1 mr-0.5 pt-2 text-white text-sm font-bold uppercase place-items-center rounded-md border-2 border-solid border-emerald-700 bg-emerald-600">U</div>
+                      <div className="flex-1 mr-0.5 pt-2 text-white text-sm font-bold uppercase place-items-center rounded-md border-2 border-solid border-gray-700 bg-gray-600">D</div>
+                      <div className="flex-1 mr-0.5 pt-2 text-white text-sm font-bold uppercase place-items-center rounded-md border-2 border-solid border-gray-700 bg-gray-600">I</div>
+                      <div className="flex-1 mr-0.5 pt-2 text-white text-sm font-bold uppercase place-items-center rounded-md border-2 border-solid border-gray-700 bg-gray-600">O</div>
                     </div>
                     The letter U is in the word and in the correct position.
-                    <div className="flex m-auto py-2 w-52 h-14">
-                      <div className="flex-1 pt-2 text-white text-sm font-bold uppercase place-items-center rounded-md border-2 border-solid border-gray-700 bg-gray-600">S</div>
-                      <div className="flex-1 pt-2 text-white text-sm font-bold uppercase place-items-center rounded-md border-2 border-solid border-gray-700 bg-gray-600">H</div>
-                      <div className="flex-1 pt-2 text-white text-sm font-bold uppercase place-items-center rounded-md border-2 border-solid border-gray-700 bg-gray-600">A</div>
-                      <div className="flex-1 pt-2 text-white text-sm font-bold uppercase place-items-center rounded-md border-2 border-solid border-yellow-700 bg-yellow-600">P</div>
-                      <div className="flex-1 pt-2 text-white text-sm font-bold uppercase place-items-center rounded-md border-2 border-solid border-gray-700 bg-gray-600">E</div>
+                    <div className="flex m-auto py-2 w-56 h-14">
+                      <div className="flex-1 mr-0.5 pt-2 text-white text-sm font-bold uppercase place-items-center rounded-md border-2 border-solid border-gray-700 bg-gray-600">S</div>
+                      <div className="flex-1 mr-0.5 pt-2 text-white text-sm font-bold uppercase place-items-center rounded-md border-2 border-solid border-gray-700 bg-gray-600">H</div>
+                      <div className="flex-1 mr-0.5 pt-2 text-white text-sm font-bold uppercase place-items-center rounded-md border-2 border-solid border-gray-700 bg-gray-600">A</div>
+                      <div className="flex-1 mr-0.5 pt-2 text-white text-sm font-bold uppercase place-items-center rounded-md border-2 border-solid border-yellow-700 bg-yellow-600">P</div>
+                      <div className="flex-1 mr-0.5 pt-2 text-white text-sm font-bold uppercase place-items-center rounded-md border-2 border-solid border-gray-700 bg-gray-600">E</div>
                     </div>
                     The letter P is in the word but in the incorrect position.
-                    <div className="flex m-auto py-2 w-52 h-14">
-                      <div className="flex-1 pt-2 text-white text-sm font-bold uppercase place-items-center rounded-md border-2 border-solid border-gray-700 bg-gray-600">W</div>
-                      <div className="flex-1 pt-2 text-white text-sm font-bold uppercase place-items-center rounded-md border-2 border-solid border-gray-700 bg-gray-600">R</div>
-                      <div className="flex-1 pt-2 text-white text-sm font-bold uppercase place-items-center rounded-md border-2 border-solid border-gray-700 bg-gray-600">O</div>
-                      <div className="flex-1 pt-2 text-white text-sm font-bold uppercase place-items-center rounded-md border-2 border-solid border-gray-700 bg-gray-600">N</div>
-                      <div className="flex-1 pt-2 text-white text-sm font-bold uppercase place-items-center rounded-md border-2 border-solid border-gray-700 bg-gray-600">G</div>
+                    <div className="flex m-auto py-2 w-56 h-14">
+                      <div className="flex-1 mr-0.5 pt-2 text-white text-sm font-bold uppercase place-items-center rounded-md border-2 border-solid border-gray-700 bg-gray-600">W</div>
+                      <div className="flex-1 mr-0.5 pt-2 text-white text-sm font-bold uppercase place-items-center rounded-md border-2 border-solid border-gray-700 bg-gray-600">R</div>
+                      <div className="flex-1 mr-0.5 pt-2 text-white text-sm font-bold uppercase place-items-center rounded-md border-2 border-solid border-gray-700 bg-gray-600">O</div>
+                      <div className="flex-1 mr-0.5 pt-2 text-white text-sm font-bold uppercase place-items-center rounded-md border-2 border-solid border-gray-700 bg-gray-600">N</div>
+                      <div className="flex-1 mr-0.5 pt-2 text-white text-sm font-bold uppercase place-items-center rounded-md border-2 border-solid border-gray-700 bg-gray-600">G</div>
                     </div>
                     The letter W is not in the word, in any position.
                   </p>
