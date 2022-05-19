@@ -123,7 +123,7 @@ const Home: NextPage = () => {
       <Head>
         <title>Wordle Clone</title>
       </Head>
-      <nav className="h-20">
+      <nav className="h-40">
         <HowToPlayModal />
       </nav>
       <main className="">
