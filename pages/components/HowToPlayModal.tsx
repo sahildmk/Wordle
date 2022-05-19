@@ -5,7 +5,7 @@ export default function HowToPlayModal() {
   return (
     <>
       <button
-        className="bg-gray-600 active:bg-gray-700 text-white font-bold uppercase text-sm px-6 py-5 mt-5 rounded"
+        className="bg-gray-600 active:bg-gray-700 text-white font-bold tracking-wider uppercase text-sm px-6 py-5 mt-5 rounded"
         type="button"
         onClick={() => setShowModal(true)}
       >
@@ -17,7 +17,7 @@ export default function HowToPlayModal() {
             className="justify-center items-center flex overflow-x-hidden overflow-y-auto fixed inset-0 z-50 outline-none focus:outline-none"
           >
             <div className="relative w-auto my-6 mx-auto max-w-3xl text-center">
-              <div className="border-0 rounded-lg shadow-lg relative flex flex-col w-full bg-white outline-none focus:outline-none">
+              <div className="border-0 rounded-lg shadow-lg relative -top-52 flex flex-col w-full bg-white outline-none focus:outline-none">
                 <div className="text-center p-5 border-b border-solid border-slate-200">
                   <h3 className="text-3xl text-slate-900 font-semibold">
                     Instructions
