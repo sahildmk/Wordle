@@ -63,6 +63,22 @@
   @apply border-gray-700 bg-gray-600;
 }
 
+.how-to-play-default-tile {
+  @apply mr-0.5 flex-1 place-items-center rounded-md border-2;
+  @apply border-gray-700 bg-gray-600 border-solid pt-2 text-sm;
+  @apply font-bold uppercase text-white;
+}
+
+.how-to-play-correct-tile {
+  @apply how-to-play-default-tile;
+  @apply border-emerald-700 bg-emerald-600;
+}
+
+.how-to-play-incorrect-tile {
+  @apply how-to-play-default-tile;
+  @apply border-yellow-700 bg-yellow-600;
+}
+
 @keyframes spin {
   0% {
     transform: rotateX(0);
@@ -84,4 +100,33 @@
     transform: translateY(-5%);
     animation-timing-function: cubic-bezier(0.8, 0, 1, 1);
   }
+}
+
+@keyframes modal-show {
+  0% {
+    top: -2em;
+    opacity: 60%;
+  }
+  100% {
+    top: 0;
+  }
+}
+
+@keyframes modal-close {
+  0% {
+    top: 0em;
+    opacity: 100%;
+  }
+  100% {
+    top: -6em;
+    opacity: 60%;
+  }
+}
+
+.animate-modal-show {
+  animation: modal-show 500ms ease-out;
+}
+
+.animate-modal-close {
+  animation: modal-close 500ms ease-out;
 }

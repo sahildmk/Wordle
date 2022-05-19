@@ -1,11 +1,11 @@
 import React from "react";
 
-export default function HowToPlayModal() {
+const HowToPlayModal = () => {
   const [showModal, setShowModal] = React.useState(false);
   return (
     <>
       <button
-        className="bg-gray-600 active:bg-gray-700 text-white font-bold tracking-wider uppercase text-sm px-6 py-5 mt-5 rounded"
+        className="mt-5 rounded bg-gray-600 px-6 py-5 text-sm font-bold uppercase tracking-wider text-white active:bg-gray-700"
         type="button"
         onClick={() => setShowModal(true)}
       >
@@ -13,50 +13,52 @@ export default function HowToPlayModal() {
       </button>
       {showModal ? (
         <>
-          <div
-            className="justify-center items-center flex overflow-x-hidden overflow-y-auto fixed inset-0 z-50 outline-none focus:outline-none"
-          >
-            <div className="relative w-auto my-6 mx-auto max-w-3xl text-center">
-              <div className="border-0 rounded-lg shadow-lg relative -top-52 flex flex-col w-full bg-white outline-none focus:outline-none">
-                <div className="text-center p-5 border-b border-solid border-slate-200">
-                  <h3 className="text-3xl text-slate-900 font-semibold">
+          <div className="animate-modal-show fixed inset-0 z-50 flex items-center justify-center overflow-y-auto overflow-x-hidden outline-none focus:outline-none">
+            <div className="relative my-6 mx-auto w-auto max-w-3xl text-center">
+              <div className="border-800 flex w-full flex-col rounded-lg bg-slate-800 shadow-lg outline-none focus:outline-none">
+                <div className="border-b border-solid border-slate-200 p-6 text-center">
+                  <h3 className="text-3xl font-semibold text-slate-200">
                     Instructions
                   </h3>
                 </div>
-                <div className="relative p-6 flex-auto">
-                  <p className="my-4 text-slate-500 text-lg leading-relaxed">
-                    You have to guess the WORDLE in six attempts.<br/>
-                    Each guess is a five-letter word. To submit your guess, hit ENTER.<br/>
-                    The colour of the tiles will change to show you how close your guess is.
-                    <div className="flex m-auto py-2 w-56 h-14">
-                      <div className="flex-1 mr-0.5 pt-2 text-white text-sm font-bold uppercase place-items-center rounded-md border-2 border-solid border-gray-700 bg-gray-600">A</div>
-                      <div className="flex-1 mr-0.5 pt-2 text-white text-sm font-bold uppercase place-items-center rounded-md border-2 border-solid border-emerald-700 bg-emerald-600">U</div>
-                      <div className="flex-1 mr-0.5 pt-2 text-white text-sm font-bold uppercase place-items-center rounded-md border-2 border-solid border-gray-700 bg-gray-600">D</div>
-                      <div className="flex-1 mr-0.5 pt-2 text-white text-sm font-bold uppercase place-items-center rounded-md border-2 border-solid border-gray-700 bg-gray-600">I</div>
-                      <div className="flex-1 mr-0.5 pt-2 text-white text-sm font-bold uppercase place-items-center rounded-md border-2 border-solid border-gray-700 bg-gray-600">O</div>
+                <div className="relative flex-auto p-6">
+                  <div className="my-4 text-lg leading-relaxed text-slate-200">
+                    You have to guess the WORDLE in six attempts.
+                    <br />
+                    Each guess is a five-letter word. To submit your guess, hit
+                    ENTER.
+                    <br />
+                    The colour of the tiles will change to show you how close
+                    your guess is.
+                    <div className="m-auto flex h-14 w-56 py-2">
+                      <div className="how-to-play-default-tile">A</div>
+                      <div className="how-to-play-correct-tile">U</div>
+                      <div className="how-to-play-default-tile">D</div>
+                      <div className="how-to-play-default-tile">I</div>
+                      <div className="how-to-play-default-tile">O</div>
                     </div>
                     The letter U is in the word and in the correct position.
-                    <div className="flex m-auto py-2 w-56 h-14">
-                      <div className="flex-1 mr-0.5 pt-2 text-white text-sm font-bold uppercase place-items-center rounded-md border-2 border-solid border-gray-700 bg-gray-600">S</div>
-                      <div className="flex-1 mr-0.5 pt-2 text-white text-sm font-bold uppercase place-items-center rounded-md border-2 border-solid border-gray-700 bg-gray-600">H</div>
-                      <div className="flex-1 mr-0.5 pt-2 text-white text-sm font-bold uppercase place-items-center rounded-md border-2 border-solid border-gray-700 bg-gray-600">A</div>
-                      <div className="flex-1 mr-0.5 pt-2 text-white text-sm font-bold uppercase place-items-center rounded-md border-2 border-solid border-yellow-700 bg-yellow-600">P</div>
-                      <div className="flex-1 mr-0.5 pt-2 text-white text-sm font-bold uppercase place-items-center rounded-md border-2 border-solid border-gray-700 bg-gray-600">E</div>
+                    <div className="m-auto flex h-14 w-56 py-2">
+                      <div className="how-to-play-default-tile">S</div>
+                      <div className="how-to-play-default-tile">H</div>
+                      <div className="how-to-play-default-tile">A</div>
+                      <div className="how-to-play-incorrect-tile">P</div>
+                      <div className="how-to-play-default-tile">E</div>
                     </div>
                     The letter P is in the word but in the incorrect position.
-                    <div className="flex m-auto py-2 w-56 h-14">
-                      <div className="flex-1 mr-0.5 pt-2 text-white text-sm font-bold uppercase place-items-center rounded-md border-2 border-solid border-gray-700 bg-gray-600">W</div>
-                      <div className="flex-1 mr-0.5 pt-2 text-white text-sm font-bold uppercase place-items-center rounded-md border-2 border-solid border-gray-700 bg-gray-600">R</div>
-                      <div className="flex-1 mr-0.5 pt-2 text-white text-sm font-bold uppercase place-items-center rounded-md border-2 border-solid border-gray-700 bg-gray-600">O</div>
-                      <div className="flex-1 mr-0.5 pt-2 text-white text-sm font-bold uppercase place-items-center rounded-md border-2 border-solid border-gray-700 bg-gray-600">N</div>
-                      <div className="flex-1 mr-0.5 pt-2 text-white text-sm font-bold uppercase place-items-center rounded-md border-2 border-solid border-gray-700 bg-gray-600">G</div>
+                    <div className="m-auto flex h-14 w-56 py-2">
+                      <div className="how-to-play-default-tile">W</div>
+                      <div className="how-to-play-default-tile">R</div>
+                      <div className="how-to-play-default-tile">O</div>
+                      <div className="how-to-play-default-tile">N</div>
+                      <div className="how-to-play-default-tile">G</div>
                     </div>
                     The letter W is not in the word, in any position.
-                  </p>
+                  </div>
                 </div>
-                <div className="flex items-center justify-end p-6 border-t border-solid border-slate-200 rounded-b">
+                <div className="flex items-center justify-end rounded-b border-t border-solid border-slate-200 p-6">
                   <button
-                    className="text-slate-900 background-transparent font-bold uppercase px-1 outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150"
+                    className="background-transparent mr-1 mb-1 px-1 font-bold uppercase text-slate-200 outline-none transition-all duration-150 ease-linear hover:text-slate-400 focus:outline-none"
                     type="button"
                     onClick={() => setShowModal(false)}
                   >
@@ -66,9 +68,11 @@ export default function HowToPlayModal() {
               </div>
             </div>
           </div>
-          <div className="opacity-25 fixed inset-0 z-40 bg-black"></div>
+          <div className="fixed inset-0 z-40 bg-black opacity-60"></div>
         </>
       ) : null}
     </>
   );
-}
+};
+
+export default HowToPlayModal;

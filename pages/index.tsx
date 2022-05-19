@@ -122,6 +122,16 @@ const Home: NextPage = () => {
     <div className="flex h-screen flex-col items-center bg-slate-900 text-white">
       <Head>
         <title>Wordle Clone</title>
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link
+          rel="preconnect"
+          href="https://fonts.gstatic.com"
+          crossOrigin="1"
+        />
+        <link
+          href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap"
+          rel="stylesheet"
+        />
       </Head>
       <nav className="h-40">
         <HowToPlayModal />
